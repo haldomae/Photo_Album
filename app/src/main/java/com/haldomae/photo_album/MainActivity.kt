@@ -1,5 +1,7 @@
 package com.haldomae.photo_album
 
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.haldomae.photo_album.databinding.ActivityMainBinding
@@ -15,6 +17,17 @@ class MainActivity : AppCompatActivity() {
         "楽しいから笑うのではない。笑うから楽しいのだ。\nウィリアム・ジェームズ",
         "幸せとは、健康で記憶力が悪いということだ。\nアルベルト・シュバイツァー",
     )
+
+    // Colormatrixクラスを使って画像をセピア色に加工するフィルター
+    private val matrix = ColorMatrix(
+        floatArrayOf(
+            0.39f, 0.769f, 0.189f, 0f, 0f,
+            0.349f, 0.686f, 0.168f, 0f, 0f,
+            0.272f, 0.534f, 0.131f, 0f, 0f,
+            0f, 0f, 0f, 1f, 0f
+        )
+    )
+    private val filter = ColorMatrixColorFilter(matrix)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_main)
@@ -53,5 +66,6 @@ class MainActivity : AppCompatActivity() {
         // 画像と文言を更新
         binding.textView.text = quoteList[position]
         binding.imageView.setImageResource(imageList[position])
+        binding.imageView.colorFilter = filter
     }
 }
