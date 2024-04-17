@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Photo_Album</string>
+    <string name="btn_left">左へスライド</string>
+    <string name="bth_right">右へスライド</string>
 </resources>
